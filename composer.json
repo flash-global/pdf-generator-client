@@ -8,11 +8,6 @@
       "email": "contact@flash-europe.com"
     }
   ],
-  "config": {
-    "platform": {
-      "php": "7.0"
-    }
-  },
   "require": {
     "fei/api-client": "^1.0.0",
     "fei/pdf-generator-common": "^1.0.0"
