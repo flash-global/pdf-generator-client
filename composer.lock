@@ -85,22 +85,21 @@
         },
         {
             "name": "fei/pdf-generator-common",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:flash-global/pdf-generator-common.git",
-                "reference": "817640cbd369e9f997ee7bc8afb4d14ce859cee2"
+                "reference": "8fcebb4b654161ab39edeb2212a258ee6cd59fe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.flash-global.net/dist/fei-pdf-generator-common-817640cbd369e9f997ee7bc8afb4d14ce859cee2-zip-2a4e00.zip",
-                "reference": "817640cbd369e9f997ee7bc8afb4d14ce859cee2",
-                "shasum": "83488c637f405d83971adde9ce2c3e916ee69070"
+                "url": "https://composer.flash-global.net/dist/fei-pdf-generator-common-8fcebb4b654161ab39edeb2212a258ee6cd59fe1-zip-2c3a1e.zip",
+                "reference": "8fcebb4b654161ab39edeb2212a258ee6cd59fe1",
+                "shasum": "2dd34e273c332ab678bdda8afff69e9020645179"
             },
             "require": {
                 "fei/entities": "^1.0.0",
-                "league/fractal": "^0.14.0",
-                "php": "^7.0"
+                "league/fractal": "^0.14.0"
             },
             "require-dev": {
                 "codeception/codeception": "^2.2",
@@ -126,10 +125,10 @@
             ],
             "description": "Common for Api to generate PDF",
             "support": {
-                "source": "https://github.com/flash-global/pdf-generator-common/tree/v1.0.0",
+                "source": "https://github.com/flash-global/pdf-generator-common/tree/v1.0.1",
                 "issues": "https://github.com/flash-global/pdf-generator-common/issues"
             },
-            "time": "2017-09-26 14:15:28"
+            "time": "2017-09-26 15:50:45"
         },
         {
             "name": "guzzle/guzzle",
