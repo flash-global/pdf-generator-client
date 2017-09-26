@@ -58,7 +58,7 @@ class PdfGenerator extends AbstractApiClient
      * @return bool|EntityInterface
      * @throws Exception
      */
-    public function generateUrl(string $url) // TODO check if url contains http(s)://
+    public function generateUrl(string $url)
     {
         $request = new RequestDescriptor();
 
