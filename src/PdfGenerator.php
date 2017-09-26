@@ -23,7 +23,7 @@ class PdfGenerator extends AbstractApiClient
      *
      * @return bool|EntityInterface
      */
-    public function generateHtml(string $html)
+    public function generateHtml($html)
     {
         $request = new RequestDescriptor();
 
@@ -58,7 +58,7 @@ class PdfGenerator extends AbstractApiClient
      * @return bool|EntityInterface
      * @throws Exception
      */
-    public function generateUrl(string $url)
+    public function generateUrl($url)
     {
         $request = new RequestDescriptor();
 
