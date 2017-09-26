@@ -1,5 +1,5 @@
 {
-  "name": "PDF-Generator-Api",
+  "name": "fei/pdf-generator-client",
   "description": "Api to generate PDF",
   "license": "Flash Europe Copyright",
   "authors": [
@@ -16,7 +16,7 @@
   "require": {
     "php": "^7.0",
     "fei/api-client": "^1.0.0",
-    "fei/pdf-generator-common": "1.0.0"
+    "fei/pdf-generator-common": "^1.0.0"
   },
   "autoload": {
     "psr-4": {

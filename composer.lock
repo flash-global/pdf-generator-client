@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "88751d1ae10df7bd041e08cac422368b",
-    "content-hash": "1465cfeeaa19e1b7006cc7c346818626",
+    "hash": "e61870b434496f778e1bfc00de1ce790",
+    "content-hash": "6fffca416bf696038a3fef6c121fed00",
     "packages": [
         {
             "name": "fei/api-client",
