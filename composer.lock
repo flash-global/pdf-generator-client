@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e61870b434496f778e1bfc00de1ce790",
-    "content-hash": "6fffca416bf696038a3fef6c121fed00",
+    "hash": "13e81746d3f70ae88e69991bef1e9e7d",
+    "content-hash": "ff03f7210bb7843bd465cea5c498192e",
     "packages": [
         {
             "name": "fei/api-client",
@@ -4304,9 +4304,7 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": "^7.0"
-    },
+    "platform": [],
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.0"
