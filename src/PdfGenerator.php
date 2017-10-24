@@ -27,11 +27,7 @@ class PdfGenerator extends AbstractApiClient
     {
         $request = new RequestDescriptor();
 
-        $serialized = \json_encode([
-            'html' => $html
-        ]);
-
-        $request->addBodyParam('html', $serialized);
+        $request->addBodyParam('html', $html);
 
         $request->setUrl($this->buildUrl('/api/pdf-generator/html'));
         $request->setMethod('POST');
@@ -67,12 +63,7 @@ class PdfGenerator extends AbstractApiClient
             throw new Exception(sprintf('Error : Given URL MUST contain the protocol. Current : %s', $url));
         }
 
-        $serialized = \json_encode([
-            'url' => $url
-        ]);
-
-        $request->addBodyParam('html', $serialized);
-
+        $request->addBodyParam('url', $url);
         $request->setUrl($this->buildUrl('/api/pdf-generator/url'));
         $request->setMethod('POST');
 
@@ -87,6 +78,7 @@ class PdfGenerator extends AbstractApiClient
                 return $entity;
             }
         } catch (\Exception $e) {
+            var_dump($e);
         }
 
         return false;
