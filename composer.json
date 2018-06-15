@@ -1,11 +1,12 @@
 {
   "name": "fei/pdf-generator-client",
   "description": "Api to generate PDF",
-  "license": "Flash Europe Copyright",
+  "license": "GPL-3.0",
   "authors": [
     {
-      "name": "Flash Europe",
-      "email": "contact@flash-europe.com"
+      "name": "Yoctu",
+      "email": "contact@yoctu.com",
+      "homepage": "http://yoctu.com/"
     }
   ],
   "require": {
@@ -23,11 +24,5 @@
     "squizlabs/php_codesniffer": "3.0.0RC1",
     "jakub-onderka/php-parallel-lint": "^0.9.2",
     "phpro/grumphp": "^0.11"
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://composer.flash-global.net"
-    }
-  ]
+  }
 }
