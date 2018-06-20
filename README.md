@@ -1,4 +1,8 @@
 # Pdf-generator-client
+[![GitHub license](https://img.shields.io/github/license/flash-global/pdf-generator-client.svg)](https://github.com/flash-global/pdf-generator-client)
+![continuousphp](https://img.shields.io/continuousphp/git-hub/flash-global/pdf-generator-client.svg)
+[![Build Status](https://travis-ci.org/flash-global/pdf-generator-client.svg?branch=master)](https://travis-ci.org/flash-global/pdf-generator-client)
+[![GitHub issues](https://img.shields.io/github/issues/flash-global/pdf-generator-client.svg)](https://github.com/flash-global/pdf-generator-client/issues)
 
 You can use this client to consume the Pdf Generator service.
 
