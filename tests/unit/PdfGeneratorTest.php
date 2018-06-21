@@ -13,11 +13,13 @@ use Fei\ApiClient\Transport\SyncTransportInterface;
 use PdfGenerator\Client\Exception;
 use PdfGenerator\Client\PdfGenerator;
 use PdfGenerator\Entity\PdfContainer;
+use PHPUnit\Framework\TestCase;
+
 
 /**
  * PdfGeneratorTest
  */
-class PdfGeneratorTest extends \PHPUnit_Framework_TestCase
+class PdfGeneratorTest extends TestCase
 {
     public function testGenerateHtmlValid()
     {
