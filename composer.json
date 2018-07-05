@@ -13,6 +13,11 @@
     "fei/api-client": "^1.0.0",
     "fei/pdf-generator-common": "^1.0.0"
   },
+  "config": {
+    "platform": {
+      "php": "7.0"
+    }
+  },
   "autoload": {
     "psr-4": {
       "PdfGenerator\\Client\\": "src"
