@@ -11,7 +11,9 @@ namespace PdfGenerator\Client;
 use Fei\ApiClient\AbstractApiClient;
 use Fei\ApiClient\RequestDescriptor;
 use Fei\ApiClient\ResponseDescriptor;
-use Fei\Entity\EntityInterface;
+use PdfGenerator\Entity\PdfConverter;
+use PdfGenerator\Entity\Store;
+use PdfGenerator\Hydrator\PdfConverterHydrator;
 
 /**
  * PdfGenerator
@@ -20,29 +22,39 @@ class PdfGenerator extends AbstractApiClient
 {
     /**
      * @param string $html
+     * @param bool $storeOnFiler
+     * @param string $filename
      *
-     * @return bool|EntityInterface
+     * @return bool|PdfConverter
+     *
+     * @throws \Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
      */
-    public function generateHtml($html)
+    public function generateHtml($html, $storeOnFiler = false, $filename = 'file.pdf')
     {
         $request = new RequestDescriptor();
 
-        $request->addBodyParam('html', $html);
+        $serialized = \json_encode(
+            [
+            'output_filename' => $filename,
+            'type' =>  PdfConverter::HTML,
+            'store' => $storeOnFiler ? Store::FILER: Store::NONE,
+            'data' => $html,
+            ]
+        );
 
-        $request->setUrl($this->buildUrl('/api/pdf-generator/html'));
+        $request->addBodyParam('convert', $serialized);
+        $request->setUrl($this->buildUrl('/api/pdf-generator/convert'));
         $request->setMethod('POST');
 
-        try {
-            $response = $this->send($request);
+        $response = $this->send($request);
 
-            if ($response instanceof ResponseDescriptor) {
-                $meta = $response->getMeta('entity');
-                $data = $response->getData();
-                $entity = $this->entityFactory($meta, $data);
+        if ($response instanceof ResponseDescriptor) {
+            $data = $response->getData();
+            $entity = $this->entityFactory($data);
 
-                return $entity;
-            }
-        } catch (\Exception $e) {
+            return $entity;
         }
 
         return false;
@@ -50,11 +62,17 @@ class PdfGenerator extends AbstractApiClient
 
     /**
      * @param string $url
+     * @param bool $storeOnFiler
+     * @param string $filename
      *
-     * @return bool|EntityInterface
+     * @return bool|PdfConverter
      * @throws Exception
+     *
+     * @throws \Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
      */
-    public function generateUrl($url)
+    public function generateUrl($url, $storeOnFiler = false, $filename = 'file.pdf')
     {
         $request = new RequestDescriptor();
 
@@ -63,40 +81,40 @@ class PdfGenerator extends AbstractApiClient
             throw new Exception(sprintf('Error : Given URL MUST contain the protocol. Current : %s', $url));
         }
 
-        $request->addBodyParam('url', $url);
-        $request->setUrl($this->buildUrl('/api/pdf-generator/url'));
+        $serialized = \json_encode(
+            [
+            'output_filename' => $filename,
+            'type' =>  PdfConverter::HTML,
+            'store' => $storeOnFiler ? Store::FILER: Store::NONE,
+            'url' => $url,
+            ]
+        );
+
+        $request->addBodyParam('convert', $serialized);
+        $request->setUrl($this->buildUrl('/api/pdf-generator/convert'));
         $request->setMethod('POST');
 
-        try {
-            $response = $this->send($request);
+        $response = $this->send($request);
 
-            if ($response instanceof ResponseDescriptor) {
-                $meta = $response->getMeta('entity');
-                $data = $response->getData();
-                $entity = $this->entityFactory($meta, $data);
+        if ($response instanceof ResponseDescriptor) {
+            $data = $response->getData();
+            $entity = $this->entityFactory($data);
 
-                return $entity;
-            }
-        } catch (\Exception $e) {
-            var_dump($e);
+            return $entity;
         }
 
         return false;
     }
 
     /**
-     * @param       $targetEntity
      * @param array $data
      *
-     * @return EntityInterface
+     * @return PdfConverter
+     *
+     * @throws \Exception
      */
-    public function entityFactory($targetEntity, array $data)
+    public function entityFactory(array $data)
     {
-        /** @var EntityInterface $entity */
-        $entity = new $targetEntity;
-
-        $entity->hydrate($data);
-
-        return $entity;
+        return (new PdfConverterHydrator())->hydrate($data, new PdfConverter());
     }
 }
