@@ -12,6 +12,7 @@ use Fei\ApiClient\ResponseDescriptor;
 use Fei\ApiClient\Transport\SyncTransportInterface;
 use PdfGenerator\Client\Exception;
 use PdfGenerator\Client\PdfGenerator;
+use PdfGenerator\Entity\PdfContainer;
 use PdfGenerator\Entity\PdfConverter;
 use PdfGenerator\Entity\Store;
 use PHPUnit\Framework\TestCase;
@@ -38,7 +39,7 @@ class PdfGeneratorTest extends TestCase
 
         $response = $pdfGenerator->generateHtml('<span>Test</span>');
 
-        $this->assertInstanceOf(PdfConverter::class, $response);
+        $this->assertInstanceOf(PdfContainer::class, $response);
     }
 
     /**
@@ -92,7 +93,7 @@ class PdfGeneratorTest extends TestCase
 
         $response = $pdfGenerator->generateUrl('http://www.google.fr');
 
-        $this->assertInstanceOf(PdfConverter::class, $response);
+        $this->assertInstanceOf(PdfContainer::class, $response);
     }
 
     /**
@@ -154,12 +155,16 @@ class PdfGeneratorTest extends TestCase
 
         $response->setBody(\json_encode([
             'data' => [
-                'data' => 'JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9DcmVhdG9yIChDaHJvbWl1bSkKL1Byb2R1Y2VyIChTa2lhL1BERiBtNjEpCi9DcmVhdGlvbkRhdGUgKEQ6MjAxNzA5MjYxNDE0MjMrMDAnMDAnKQovTW9kRGF0ZSAoRDoyMDE3MDkyNjE0MTQyMyswMCcwMCcpPj4KZW5kb2JqCjIgMCBvYmoKPDwvRmlsdGVyIC9GbGF0ZURlY29kZQovTGVuZ3RoIDI4Mz4',
-                'type' => PdfConverter::HTML,
-                'store' => Store::NONE,
-                'download' => false,
-                'output_filename' => '/tmp/79cb15e325269c94a6f337397c36cbf9.pdf',
-                'category' => 0,
+                'responseStatus' => 200,
+                'sourceContainer' => [
+                    'data' => 'JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9DcmVhdG9yIChDaHJvbWl1bSkKL1Byb2R1Y2VyIChTa2lhL1BERiBtNjEpCi9DcmVhdGlvbkRhdGUgKEQ6MjAxNzA5MjYxNDE0MjMrMDAnMDAnKQovTW9kRGF0ZSAoRDoyMDE3MDkyNjE0MTQyMyswMCcwMCcpPj4KZW5kb2JqCjIgMCBvYmoKPDwvRmlsdGVyIC9GbGF0ZURlY29kZQovTGVuZ3RoIDI4Mz4',
+                    'type' => PdfConverter::HTML,
+                    'store' => Store::NONE,
+                    'download' => false,
+                    'output_filename' => '/tmp/79cb15e325269c94a6f337397c36cbf9.pdf',
+                    'category' => 0,
+                ],
+                'url' => 'http://google.fr',
             ]
         ]));
 

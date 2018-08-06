@@ -11,9 +11,10 @@ namespace PdfGenerator\Client;
 use Fei\ApiClient\AbstractApiClient;
 use Fei\ApiClient\RequestDescriptor;
 use Fei\ApiClient\ResponseDescriptor;
+use PdfGenerator\Entity\PdfContainer;
 use PdfGenerator\Entity\PdfConverter;
 use PdfGenerator\Entity\Store;
-use PdfGenerator\Hydrator\PdfConverterHydrator;
+use PdfGenerator\Hydrator\PdfContainerHydrator;
 
 /**
  * PdfGenerator
@@ -25,7 +26,7 @@ class PdfGenerator extends AbstractApiClient
      * @param bool $storeOnFiler
      * @param string $filename
      *
-     * @return bool|PdfConverter
+     * @return bool|object|PdfContainer
      *
      * @throws \Exception
      * @throws \Fei\ApiClient\ApiClientException
@@ -37,10 +38,10 @@ class PdfGenerator extends AbstractApiClient
 
         $serialized = \json_encode(
             [
-            'output_filename' => $filename,
-            'type' =>  PdfConverter::HTML,
-            'store' => $storeOnFiler ? Store::FILER: Store::NONE,
-            'data' => $html,
+                'output_filename' => $filename,
+                'type' =>  PdfConverter::HTML,
+                'store' => $storeOnFiler ? Store::FILER: Store::NONE,
+                'data' => $html,
             ]
         );
 
@@ -65,9 +66,9 @@ class PdfGenerator extends AbstractApiClient
      * @param bool $storeOnFiler
      * @param string $filename
      *
-     * @return bool|PdfConverter
-     * @throws Exception
+     * @return bool|object|PdfContainer
      *
+     * @throws Exception
      * @throws \Exception
      * @throws \Fei\ApiClient\ApiClientException
      * @throws \Fei\ApiClient\Transport\TransportException
@@ -83,10 +84,10 @@ class PdfGenerator extends AbstractApiClient
 
         $serialized = \json_encode(
             [
-            'output_filename' => $filename,
-            'type' =>  PdfConverter::HTML,
-            'store' => $storeOnFiler ? Store::FILER: Store::NONE,
-            'url' => $url,
+                'output_filename' => $filename,
+                'type' =>  PdfConverter::HTML,
+                'store' => $storeOnFiler ? Store::FILER: Store::NONE,
+                'url' => $url,
             ]
         );
 
@@ -109,12 +110,12 @@ class PdfGenerator extends AbstractApiClient
     /**
      * @param array $data
      *
-     * @return PdfConverter
+     * @return object|PdfContainer
      *
      * @throws \Exception
      */
     public function entityFactory(array $data)
     {
-        return (new PdfConverterHydrator())->hydrate($data, new PdfConverter());
+        return (new PdfContainerHydrator())->hydrate($data, new PdfContainer());
     }
 }

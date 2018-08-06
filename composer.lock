@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbeb73f8f185b3d69cbeac162a101272",
+    "content-hash": "eda9b73a098c565c2ed841ce53c03bad",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -247,16 +247,16 @@
         },
         {
             "name": "fei/pdf-generator-common",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flash-global/pdf-generator-common.git",
-                "reference": "8b20e276304817277b1154ac983a95e981a7ddcc"
+                "reference": "4847eba22c62b7d54af849ad03b78ec951d8b2a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flash-global/pdf-generator-common/zipball/8b20e276304817277b1154ac983a95e981a7ddcc",
-                "reference": "8b20e276304817277b1154ac983a95e981a7ddcc",
+                "url": "https://api.github.com/repos/flash-global/pdf-generator-common/zipball/4847eba22c62b7d54af849ad03b78ec951d8b2a8",
+                "reference": "4847eba22c62b7d54af849ad03b78ec951d8b2a8",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,6 @@
                     "PdfGenerator\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
@@ -290,7 +289,11 @@
                 }
             ],
             "description": "Common for Api to generate PDF",
-            "time": "2018-06-15T09:57:07+00:00"
+            "support": {
+                "source": "https://github.com/flash-global/pdf-generator-common/tree/v2.1.0",
+                "issues": "https://github.com/flash-global/pdf-generator-common/issues"
+            },
+            "time": "2018-08-06T12:48:26+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
