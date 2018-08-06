@@ -108,6 +108,16 @@ class PdfGenerator extends AbstractApiClient
     }
 
     /**
+     * @param PdfContainer $pdfContainer
+     *
+     * @return bool|string
+     */
+    public function getContentsFromPdfContainer(PdfContainer $pdfContainer)
+    {
+        return file_get_contents($pdfContainer->getUrl());
+    }
+
+    /**
      * @param array $data
      *
      * @return object|PdfContainer

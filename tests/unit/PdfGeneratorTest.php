@@ -170,4 +170,15 @@ class PdfGeneratorTest extends TestCase
 
         return $response;
     }
+
+    public function testGetContentsFromPdfContainer()
+    {
+        $pdfContainer = (new PdfContainer())->setUrl('http://www.flash.global/en/');
+        $pdfGenerator = new PdfGenerator();
+
+        $this->assertEquals(
+            file_get_contents('http://www.flash.global/en/'),
+            $pdfGenerator->getContentsFromPdfContainer($pdfContainer)
+        );
+    }
 }
