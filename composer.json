@@ -10,24 +10,35 @@
     }
   ],
   "require": {
-    "fei/api-client": "^1.0.0",
-    "fei/pdf-generator-common": "^1.0.0"
+    "fei/api-client": "^1.0",
+    "fei/pdf-generator-common": "^2.0"
   },
   "config": {
     "platform": {
       "php": "7.0"
     }
   },
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "PdfGenerator\\Client\\": "src"
     }
   },
   "require-dev": {
-    "phplint/phplint": "*",
+    "phplint/phplint": "^0.0",
     "codeception/codeception": "^2.2",
     "squizlabs/php_codesniffer": "^3",
     "jakub-onderka/php-parallel-lint": "^0.9.2",
     "phpro/grumphp": "^0.14"
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/flash-global/api-client"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/flash-global/pdf-generator-common"
+    }
+  ]
 }

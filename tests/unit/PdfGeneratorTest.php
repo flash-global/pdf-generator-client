@@ -13,14 +13,21 @@ use Fei\ApiClient\Transport\SyncTransportInterface;
 use PdfGenerator\Client\Exception;
 use PdfGenerator\Client\PdfGenerator;
 use PdfGenerator\Entity\PdfContainer;
+use PdfGenerator\Entity\PdfConverter;
+use PdfGenerator\Entity\Store;
 use PHPUnit\Framework\TestCase;
 
-
 /**
- * PdfGeneratorTest
+ * Class PdfGeneratorTest
+ *
+ * @package Tests\PdfGenerator\Client
  */
 class PdfGeneratorTest extends TestCase
 {
+    /**
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateHtmlValid()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -35,6 +42,10 @@ class PdfGeneratorTest extends TestCase
         $this->assertInstanceOf(PdfContainer::class, $response);
     }
 
+    /**
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateHtmlNotValid()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -49,6 +60,10 @@ class PdfGeneratorTest extends TestCase
         $this->assertFalse($response);
     }
 
+    /**
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateHtmlException()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -58,11 +73,15 @@ class PdfGeneratorTest extends TestCase
 
         $pdfGenerator->setTransport($transport);
 
-        $response = $pdfGenerator->generateHtml('<span>Test</span>');
-
-        $this->assertFalse($response);
+        $this->expectException(\Exception::class);
+        $pdfGenerator->generateHtml('<span>Test</span>');
     }
 
+    /**
+     * @throws Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateUrlValid()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -77,6 +96,11 @@ class PdfGeneratorTest extends TestCase
         $this->assertInstanceOf(PdfContainer::class, $response);
     }
 
+    /**
+     * @throws Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateUrlNotValid()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -91,6 +115,11 @@ class PdfGeneratorTest extends TestCase
         $this->assertFalse($response);
     }
 
+    /**
+     * @throws Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
+     */
     public function testGenerateUrlException()
     {
         $transport = $this->getMockBuilder(SyncTransportInterface::class)->getMock();
@@ -100,17 +129,20 @@ class PdfGeneratorTest extends TestCase
 
         $pdfGenerator->setTransport($transport);
 
-        $response = $pdfGenerator->generateUrl('http://www.google.fr');
-
-        $this->assertFalse($response);
+        $this->expectException(\Exception::class);
+        $pdfGenerator->generateUrl('http://www.google.fr');
     }
 
     /**
-     * @expectedException Exception
+     * @throws Exception
+     * @throws \Fei\ApiClient\ApiClientException
+     * @throws \Fei\ApiClient\Transport\TransportException
      */
     public function testGenerateUrlNoProtocol()
     {
         $pdfGenerator = new PdfGenerator();
+
+        $this->expectException(\Exception::class);
         $pdfGenerator->generateUrl('www.google.fr');
     }
 
@@ -122,15 +154,31 @@ class PdfGeneratorTest extends TestCase
         $response = new ResponseDescriptor();
 
         $response->setBody(\json_encode([
-            'meta' => [
-                'entity' => PdfContainer::class
-            ],
             'data' => [
-                'data' => 'JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9DcmVhdG9yIChDaHJvbWl1bSkKL1Byb2R1Y2VyIChTa2lhL1BERiBtNjEpCi9DcmVhdGlvbkRhdGUgKEQ6MjAxNzA5MjYxNDE0MjMrMDAnMDAnKQovTW9kRGF0ZSAoRDoyMDE3MDkyNjE0MTQyMyswMCcwMCcpPj4KZW5kb2JqCjIgMCBvYmoKPDwvRmlsdGVyIC9GbGF0ZURlY29kZQovTGVuZ3RoIDI4Mz4',
-                'originName' => '/tmp/79cb15e325269c94a6f337397c36cbf9.pdf'
+                'responseStatus' => 200,
+                'sourceContainer' => [
+                    'data' => 'JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9DcmVhdG9yIChDaHJvbWl1bSkKL1Byb2R1Y2VyIChTa2lhL1BERiBtNjEpCi9DcmVhdGlvbkRhdGUgKEQ6MjAxNzA5MjYxNDE0MjMrMDAnMDAnKQovTW9kRGF0ZSAoRDoyMDE3MDkyNjE0MTQyMyswMCcwMCcpPj4KZW5kb2JqCjIgMCBvYmoKPDwvRmlsdGVyIC9GbGF0ZURlY29kZQovTGVuZ3RoIDI4Mz4',
+                    'type' => PdfConverter::HTML,
+                    'store' => Store::NONE,
+                    'download' => false,
+                    'output_filename' => '/tmp/79cb15e325269c94a6f337397c36cbf9.pdf',
+                    'category' => 0,
+                ],
+                'url' => 'http://google.fr',
             ]
         ]));
 
         return $response;
+    }
+
+    public function testGetContentsFromPdfContainer()
+    {
+        $pdfContainer = (new PdfContainer())->setUrl('http://www.flash.global/en/');
+        $pdfGenerator = new PdfGenerator();
+
+        $this->assertEquals(
+            file_get_contents('http://www.flash.global/en/'),
+            $pdfGenerator->getContentsFromPdfContainer($pdfContainer)
+        );
     }
 }
