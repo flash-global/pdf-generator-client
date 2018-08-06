@@ -16,7 +16,7 @@ With this client you can use one kind of transport to send the requests :
 
 Pdf Client client needs at least PHP 5.5 to work properly.
 
-Add this requirement to your `composer.json`: `"fei/pdf-generator-client": : "^1.0"`
+Add this requirement to your `composer.json`: `"fei/pdf-generator-client": : "^2.0"`
 
 Or execute `composer.phar require fei/pdf-generator-client` in your terminal.
 
@@ -24,15 +24,15 @@ Or execute `composer.phar require fei/pdf-generator-client` in your terminal.
 
 ### PdfContainer entity
 
-PdfContainer entity has **two** important properties:
+PdfContainer entity has **three** important properties:
 
-| Properties    | Type              |
-|---------------|-------------------|
-| data            | `string`         |
-| originName     | `string`        |
+| Properties      | Type              |
+|-----------------|-------------------|
+| sourceContainer | `PdfConverter`    |
+| url             | `string`          |
 
-* `data` is the content of the Pdf base64 encoded
-* `originName` is a string representing the name of the Pdf
+* `sourceContainer` is the original PdfConverterEntity sent in the convert request
+* `url` is the url to fetch the generated pdf
 
 # Configuration
 
@@ -56,7 +56,6 @@ In order to consume `PdfGenerator` methods, you have to define a new `PdfGenerat
 ```php
 <?php
 
-use Fei\Service\Translate\Client\ Translate;
 use Fei\ApiClient\Transport\BasicTransport;
 use Fei\ApiClient\Transport\BeanstalkProxyTransport;
 use Pheanstalk\Pheanstalk;
