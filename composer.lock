@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "27534c9bfc39c2aaffd872f2b8fa43c1",
@@ -192,7 +192,6 @@
                     "Fei\\ApiClient\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
@@ -204,6 +203,10 @@
                 }
             ],
             "description": "Client side API helpers",
+            "support": {
+                "source": "https://github.com/flash-global/api-client/tree/v1.2.7",
+                "issues": "https://github.com/flash-global/api-client/issues"
+            },
             "time": "2018-03-15T16:08:51+00:00"
         },
         {
