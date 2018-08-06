@@ -18,6 +18,7 @@
       "php": "7.0"
     }
   },
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "PdfGenerator\\Client\\": "src"
