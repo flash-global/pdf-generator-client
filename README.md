@@ -60,7 +60,12 @@ use Fei\ApiClient\Transport\BasicTransport;
 use Fei\ApiClient\Transport\BeanstalkProxyTransport;
 use Pheanstalk\Pheanstalk;
 
-$pdfGenerator = new PdfGenerator([PdfGenerator::OPTION_BASEURL => 'http://pdf-generator-api.com']); // Put your translate API base URL here
+$pdfGenerator = new PdfGenerator([
+        PdfGenerator::OPTION_BASEURL => 'http://pdf-generator-api.com',
+        PdfGeneratot::OPTION_HEADER_AUTHORIZATION => 'key',
+    ]); // Put your translate API base URL here
+    
+    
 $pdfGenerator->setTransport(new BasicTransport());
 
 $proxy = new BeanstalkProxyTransport();
